@@ -1,0 +1,7 @@
+.graystyle a:link {color:#3be12e;}    /* unvisited link */
+.graystyle a:visited {color:#3be12e;}  /* visited link */
+.graystyle a:hover {color:#dcff0b;}   /* mouse over link */
+
+.extremestyle a:link {color:#0b8fff;}    /* unvisited link */
+.extremestyle a:visited {color:#0b8fff;}  /* visited link */
+.extremestyle a:hover {color:#0bdcff;}   /* mouse over link */
