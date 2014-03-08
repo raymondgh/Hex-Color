@@ -7,9 +7,9 @@ var timedbackground = grayscale(Math.floor(timesegment))
 
 function timeFunction()
 {
-	x=document.getElementById("time")          // Find the element
-	x.style.backgroundColor=timedbackground;          // Change the style
-	x.style.color=night(d.getHours());			// change style again
+	x=document.getElementById("time")
+	x.style.backgroundColor=timedbackground;
+	x.style.color=night(d.getHours());
 }
 timeFunction();
 
@@ -20,12 +20,6 @@ function reblock(x)
 {
 	return Math.floor(255.5-Math.abs(x-255))+Math.floor(Math.round(x/511))
 }
-
-console.log(grayscale(0) == "000000");
-console.log(grayscale(87) == "575757");
-console.log(grayscale(255) == "ffffff");
-console.log(grayscale(256) == "ffffff");
-console.log(grayscale(511) == "000000");
 
 // Number -> string
 // Takes a number 0-255 and gives its corresponding grayscale hex code
@@ -68,11 +62,3 @@ if (hours>=6 && hours<=17)
 else
 	{return "White"}
 }
-/*
-document.getElementById("now").innerHTML=d.getTime();
-document.getElementById("nowhour").innerHTML=hours;
-document.getElementById("night").innerHTML=night(hours);
-document.getElementById("today").innerHTML=Date.parse(startOfDay);
-document.getElementById("thetime").innerHTML=d.getTime()-Date.parse(startOfDay);
-document.getElementById("colortime").innerHTML=Math.floor(timesegment);
-*/
