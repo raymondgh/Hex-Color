@@ -7,9 +7,9 @@ var timedbackground = grayscale(Math.floor(timesegment))
 
 function timeFunction()
 {
-	x=document.getElementById("time")
-	x.style.backgroundColor=timedbackground;
-	x.style.color=night(d.getHours());
+	x=document.getElementById("time")          // Find the element
+	x.style.backgroundColor=timedbackground;          // Change the style
+	x.style.color=night(d.getHours());			// change style again
 }
 timeFunction();
 
@@ -62,3 +62,12 @@ if (hours>=6 && hours<=17)
 else
 	{return "White"}
 }
+
+function twilight()  // determines ideal link color
+{
+if (hours<=3 || hours>=9 && hours<=15 && hours<=9 || hours>=21)
+	{document.getElementById('time').className = 'extremestyle';}
+else
+	{document.getElementById('time').className = 'graystyle';}
+}
+twilight();
