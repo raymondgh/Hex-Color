@@ -1,8 +1,8 @@
 var d = new Date();
 var hours=d.getHours();
 var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-var timesegment = (d.getTime()-Date.parse(startOfDay))/168750
-var timedbackground = grayscale(Math.floor(timesegment))
+var timesegment = Math.floor((d.getTime()-Date.parse(startOfDay))/168750)
+var timedbackground = grayscale(timesegment)
 
 
 function timeFunction()
@@ -22,7 +22,7 @@ function reblock(x)
 	return Math.floor(255.5-Math.abs(x-255))+Math.floor(Math.round(x/511))
 }
 
-// Number -> string
+// Number -> String
 // Takes a number 0-255 and gives its corresponding grayscale hex code
 
 function grayscale(x)
@@ -64,7 +64,7 @@ else
 	{return "white"}
 }
 
-function twilight()  // determines ideal link color
+function twilight()  // determines ideal link style
 {
 if (hours<=3 || hours>=9 && hours<=15 || hours>=21)
 	{return 'extremestyle';}
