@@ -65,7 +65,7 @@ else
 
 function twilight()  // determines ideal link color
 {
-if (hours<=3 || hours>=9 && hours<=15 && hours<=9 || hours>=21)
+if (hours<=3 || hours>=9 && hours<=15 || hours>=21)
 	{document.getElementById('time').className = 'extremestyle';}
 else
 	{document.getElementById('time').className = 'graystyle';}
