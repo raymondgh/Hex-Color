@@ -11,3 +11,5 @@ The background color updates each interval, becoming one shade lighter or darker
 It is lightest at noon and darkest at midnight.
 
 The text color is white for the first and last 6 hours of the day, otherwise it is black.
+
+Label the target element with id="time"
