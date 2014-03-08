@@ -11,5 +11,6 @@ The background color updates each interval, becoming one shade lighter or darker
 It is lightest at noon and darkest at midnight.
 
 The text color is white for the first and last 6 hours of the day, otherwise it is black.
+Links are yellow when the bg is gray, and blue when it's white/black
 
-Label the target element with id="time"
+To use, label the target element with id="time" and call the script
