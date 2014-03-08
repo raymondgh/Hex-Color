@@ -10,6 +10,7 @@ function timeFunction()
 	x=document.getElementById("time")          // Find the element
 	x.style.backgroundColor=timedbackground;          // Change the style
 	x.style.color=night(d.getHours());			// change style again
+	x.className=twilight();
 }
 timeFunction();
 
@@ -58,16 +59,15 @@ function hexify(x)
 function night()  // determines ideal font color
 {
 if (hours>=6 && hours<=17)
-	{return "Black"}
+	{return "black"}
 else
-	{return "White"}
+	{return "white"}
 }
 
 function twilight()  // determines ideal link color
 {
 if (hours<=3 || hours>=9 && hours<=15 || hours>=21)
-	{document.getElementById('time').className = 'extremestyle';}
+	{return 'extremestyle';}
 else
-	{document.getElementById('time').className = 'graystyle';}
+	{return 'graystyle';}
 }
-twilight();
