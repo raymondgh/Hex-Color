@@ -66,7 +66,7 @@ else
 
 function twilight()  // determines ideal link style
 {
-if (hours<=2 || hours>=9 && hours<=14 || hours>=21)
+if (hours<=2 || hours>=8 && hours<=15 || hours>=21)
 	{return 'extremestyle';}
 else
 	{return 'graystyle';}
