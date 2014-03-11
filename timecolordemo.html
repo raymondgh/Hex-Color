@@ -7,7 +7,7 @@
 <body id="time">
 <script src="timecolor.js" type="text/javascript"></script>
 
-<p id=time class="graystyle">At <span id="nowhour"></span>:<span id="nowminute"></span> the current timeslot is <span id="colortime"></span>/511 giving <span id="textcolor"></span> text and <span id="linkcolor"></span> links on #<span id="bgcolor"></span> background.</p> 
+<p id=time class="graystyle">At <span id="nowhour"></span>:<span id="nowminute"></span> the current timeslot is <span id="colortime"></span>/511 giving a #<span id="bgcolor"></span> background.</p> 
 
 <p><a href="../index.htm">Author homepage</a></p>
 
@@ -16,8 +16,6 @@
 document.getElementById("nowhour").innerHTML=d.getHours();
 document.getElementById("nowminute").innerHTML=d.getMinutes();
 document.getElementById("colortime").innerHTML=timesegment;
-document.getElementById("textcolor").innerHTML=night();
-document.getElementById("linkcolor").innerHTML=twilight();
 document.getElementById("bgcolor").innerHTML=grayscale(timesegment);
 </script>
 </html>
