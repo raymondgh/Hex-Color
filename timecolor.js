@@ -7,7 +7,7 @@ var reblock = Math.floor(255.5-Math.abs(timesegment-255))+Math.floor(Math.round(
 function timeStyle() // Sets the background and text color 
 {
 	x=document.getElementById("time")
-	x.style.backgroundColor=grayscale(timesegment);
+	x.style.backgroundColor=lightness("000000",reblock);
 
 	if (hours<=2 || ( hours>=8 && hours<=15 ) || hours>=21)
 		{ x.className='extremestyle' }
@@ -32,53 +32,56 @@ function hue(hex, x)
 
 	for (var i=x; i>0; i--)
 	{
-	if (x==0 || r==g && g==b)  // no adjustment or gray, return input
+		// no adjustment or gray
+		if (x==0 || r==g && g==b)
 		{
-		return hex  
+			return hex  
 		} 
 
-		if (x>0)  // increasing hue
-			{
-				if      (r>=g && r<b) { r++; }
-				else if (b<=r && b>g) { b--; } 
-				else if (g>=b && g<r) { g++; } 
-				else if (r<=g && r>b) { r--; }
-				else if (b>=r && b<g) { b++; } 
-				else if (g<=b && g>r) { g--; } 
-			}
+		// increasing hue
+		if (x>0)  
+		{
+			if      (r>=g && r<b) { r++; }
+			else if (b<=r && b>g) { b--; } 
+			else if (g>=b && g<r) { g++; } 
+			else if (r<=g && r>b) { r--; }
+			else if (b>=r && b<g) { b++; } 
+			else if (g<=b && g>r) { g--; } 
+		}
 
-		 else // decreasing hue
-			{
-				if      (g>=r && g<b) { g++; } 
-				else if (b<=g && b>r) { b--; }
-				else if (r>=b && r<g) { r++; } 
-				else if (g<=r && g>b) { g--; } 
-				else if (b>=g && b<r) { b++; } 
-				else if (r<=b && r>g) { r--; } 
-			}
+		// decreasing hue
+		 else 
+		{
+			if      (g>=r && g<b) { g++; } 
+			else if (b<=g && b>r) { b--; }
+			else if (r>=b && r<g) { r++; } 
+			else if (g<=r && g>b) { g--; } 
+			else if (b>=g && b<r) { b++; } 
+			else if (r<=b && r>g) { r--; } 
+		}
 	}
-	return hexify(r)+hexify(g)+hexify(b)
+	return hexify(r)+hexify(g)+hexify(b);
 }
 
-console.log(hue("000000",0) == "000000");
-console.log(hue("0000ff",1) == "0100ff");
-console.log(hue("0000ff",254) == "fe00ff");
-console.log(hue("0000ff",255) == "ff00ff");
-console.log(hue("fe00ff",1) == "ff00ff");
+// String, integer -> String
+// Consumes a 6-digit hexademical color and a number, produces a hexadecimal color with an adjusted lightness
 
-
-
-
-// Number -> String
-// Consumes a timeSegment and produces a corresponding grayscale hexidecimal color 
-
-function grayscale(x)
+function lightness(hex, x)
 {
-	return hexify(reblock)+hexify(reblock)+hexify(reblock)
+	var r = decify(hex.slice(0,2)) + x
+	var g = decify(hex.slice(2,4)) + x
+	var b = decify(hex.slice(4,6)) + x
+
+	if (r>255) {r = 255}
+	if (g>255) {g = 255}
+	if (b>255) {b = 255}
+
+	if (r<0) {r = 0}
+	if (g<0) {g = 0}
+	if (b<0) {b = 0}
+
+	return hexify(r)+hexify(g)+hexify(b);
 }
-
-
-
 
 // Number -> String
 // Consumes a decimal 0-255 and produces its hexadecimal equivalent
