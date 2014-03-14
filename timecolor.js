@@ -41,12 +41,12 @@ function hue(hex, x)
 		// increasing hue
 		if (x>0)  
 		{
-			if      (r>=g && r<b) { r++; }
-			else if (b<=r && b>g) { b--; } 
-			else if (g>=b && g<r) { g++; } 
-			else if (r<=g && r>b) { r--; }
-			else if (b>=r && b<g) { b++; } 
-			else if (g<=b && g>r) { g--; } 
+			if      (r>=g && r<b) { r++; } // hue 240-300
+			else if (b<=r && b>g) { b--; } // hue 300-0
+			else if (g>=b && g<r) { g++; } // hue 0-60
+			else if (r<=g && r>b) { r--; } // hue 60-120
+			else if (b>=r && b<g) { b++; } // hue 120-180
+			else if (g<=b && g>r) { g--; } // hue 180-240
 		}
 
 		// decreasing hue
@@ -62,6 +62,56 @@ function hue(hex, x)
 	}
 	return hexify(r)+hexify(g)+hexify(b);
 }
+
+
+// String -> String
+// Consumes a 6-digit hexadecimal color and produces "light" "dark" or "equal"
+
+function lightordark(hex)
+{
+	var r = decify(hex.slice(0,2))
+	var g = decify(hex.slice(2,4))
+	var b = decify(hex.slice(4,6))
+
+	var cmin = Math.min(r,g,b)
+	var cmax = Math.max(r,g,b)
+
+	var lightness = cmax
+	var darkness = 255-cmax
+
+	if (lightness == darkness) {return "even";}
+	if (lightness > darkness) {return "light";}
+	else {return "dark";}
+}
+
+
+// almost works. desaturate a color by x. 
+
+function desatdark(hex, x)
+{
+	var r = decify(hex.slice(0,2))
+	var g = decify(hex.slice(2,4))
+	var b = decify(hex.slice(4,6))
+
+	var mid = (Math.max(r,g,b)+Math.min(r,g,b))/2
+	var distance = Math.max(r,g,b) - mid
+
+	var rint = (mid-r)/distance
+	var gint = distance/(mid-g)
+	var bint = distance/(mid-b)
+
+	if (x > distance) { x = distance;}
+
+	for (var i=x; i>0; i--)
+	{ r = r+rint; g=g+gint; b=b+bint;}
+	return hexify(r)+hexify(g)+hexify(b);
+}
+
+
+
+
+
+
 
 // String, integer -> String
 // Consumes a 6-digit hexademical color and a number, produces a hexadecimal color with an adjusted lightness
