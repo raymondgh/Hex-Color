@@ -13,6 +13,29 @@
 
 </body>
 <script type="text/javascript">
+var d = new Date();
+var hours=d.getHours();
+var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+var timesegment = Math.floor((d.getTime()-Date.parse(startOfDay))/168750)
+var reblock = Math.floor(255.5-Math.abs(timesegment-255))+Math.floor(Math.round(timesegment/511))
+
+function timeStyle() // Sets the background and text color 
+{
+	x=document.getElementById("time")
+	x.style.backgroundColor=lightness("000000",reblock);
+
+	if (hours<=2 || ( hours>=8 && hours<=15 ) || hours>=21)
+		{ x.className='extremestyle' }
+	else 
+		{ x.className='graystyle' }
+
+	if (hours<=5 || hours>=18)
+		{ x.style.color="white" }
+	else	
+		{ x.style.color="black" }
+}
+timeStyle();
+
 document.getElementById("nowhour").innerHTML=d.getHours();
 document.getElementById("nowminute").innerHTML=d.getMinutes();
 document.getElementById("colortime").innerHTML=timesegment;

@@ -1,16 +1,9 @@
-timecolor
+Color
 =========
-Local time based background color
+color.js includes three main functions: Hue, Saturation, and Lightness
 
+Each one consumes a hexadecimal color and a number, and produces an adjusted hex color.
 
-This javascript file calculates the time of day by comparing the client's date to his or her unix timestamp.
+This js file does not require jquery, nor does it convert to HSV format at any time.
 
-The day is divided into 512 intervals of 168.75 seconds. 
-
-The background color updates each interval, becoming one shade lighter or darker. 
-It is lightest at noon and darkest at midnight.
-
-The text color is white for the first and last 6 hours of the day, otherwise it is black.
-Links are yellow when the bg is gray, and blue when it's white/black
-
-To use, label the target element with id="time" and call the script
+Additionally, an html file is included with a script to adjust the background color of a webpage using the time of day. In my demo, the bg color is white at noon, black at midnight, and varyingly gray inbetween. The text and link colors also adjust to maintain readaibilty among the 256 different shades. 

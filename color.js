@@ -1,27 +1,4 @@
-var d = new Date();
-var hours=d.getHours();
-var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-var timesegment = Math.floor((d.getTime()-Date.parse(startOfDay))/168750)
-var reblock = Math.floor(255.5-Math.abs(timesegment-255))+Math.floor(Math.round(timesegment/511))
-
-function timeStyle() // Sets the background and text color 
-{
-	x=document.getElementById("time")
-	x.style.backgroundColor=lightness("000000",reblock);
-
-	if (hours<=2 || ( hours>=8 && hours<=15 ) || hours>=21)
-		{ x.className='extremestyle' }
-	else 
-		{ x.className='graystyle' }
-
-	if (hours<=5 || hours>=18)
-		{ x.style.color="white" }
-	else	
-		{ x.style.color="black" }
-}
-timeStyle();
-
-// String, integer -> String
+// String, Integer -> String
 // Consumes a 6-digit hexadecimal color and a number, produces a hexidecimal color with an adjusted hue
 
 function hue(hex, x) 
@@ -63,7 +40,7 @@ function hue(hex, x)
 	return hexify(r)+hexify(g)+hexify(b);
 }
 
-// String, integer -> String
+// String, Integer -> String
 // Consumes a 6-digit hex color and a number, produces a hexadecimal color with an adjusted saturation
 
 function saturation(hex, x)
@@ -100,7 +77,7 @@ function saturation(hex, x)
 	return hexify(Math.round(r))+hexify(Math.round(g))+hexify(Math.round(b));
 }
 
-// String, integer -> String
+// String, Integer -> String
 // Consumes a 6-digit hexademical color and a number, produces a hexadecimal color with an adjusted lightness
 
 function lightness(hex, x)
