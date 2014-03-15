@@ -63,55 +63,42 @@ function hue(hex, x)
 	return hexify(r)+hexify(g)+hexify(b);
 }
 
+// String, integer -> String
+// Consumes a 6-digit hex color and a number, produces a hexadecimal color with an adjusted saturation
 
-// String -> String
-// Consumes a 6-digit hexadecimal color and produces "light" "dark" or "equal"
-
-function lightordark(hex)
+function saturation(hex, x)
 {
 	var r = decify(hex.slice(0,2))
 	var g = decify(hex.slice(2,4))
 	var b = decify(hex.slice(4,6))
 
-	var cmin = Math.min(r,g,b)
-	var cmax = Math.max(r,g,b)
+	var mid = Math.floor((Math.max(r,g,b)+Math.min(r,g,b))/2)
+	var gray = -Math.abs(x)/x * (Math.max(r,g,b) - mid)
 
-	var lightness = cmax
-	var darkness = 255-cmax
+	if (x == 0) 
+		{
+			return hex
+		}
+		if (x < 0) 
+			{
+				var steps = Math.max(r,g,b) - mid
+			}
+			else
+			{
+				var steps = Math.min( 255 - Math.max(r,g,b), Math.min(r,g,b) )
+			}
 
-	if (lightness == darkness) {return "even";}
-	if (lightness > darkness) {return "light";}
-	else {return "dark";}
-}
 
+	var rint = (mid-r)/gray
+	var gint = (mid-g)/gray
+	var bint = (mid-b)/gray
 
-// almost works. desaturate a color by x. 
-
-function desatdark(hex, x)
-{
-	var r = decify(hex.slice(0,2))
-	var g = decify(hex.slice(2,4))
-	var b = decify(hex.slice(4,6))
-
-	var mid = (Math.max(r,g,b)+Math.min(r,g,b))/2
-	var distance = Math.max(r,g,b) - mid
-
-	var rint = (mid-r)/distance
-	var gint = distance/(mid-g)
-	var bint = distance/(mid-b)
-
-	if (x > distance) { x = distance;}
+	if (Math.abs(x) > steps) { x = Math.abs(steps);}
 
 	for (var i=x; i>0; i--)
-	{ r = r+rint; g=g+gint; b=b+bint;}
-	return hexify(r)+hexify(g)+hexify(b);
+	{ r = r+rint; g=g+gint; b=b+bint; }
+	return hexify(Math.round(r))+hexify(Math.round(g))+hexify(Math.round(b));
 }
-
-
-
-
-
-
 
 // String, integer -> String
 // Consumes a 6-digit hexademical color and a number, produces a hexadecimal color with an adjusted lightness
