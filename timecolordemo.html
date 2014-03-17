@@ -13,29 +13,46 @@
 
 
 
-<FORM NAME="myform" ACTION="" METHOD="GET">
+<FORM NAME="myform">
 Enter a number: <BR>
-<INPUT TYPE="text" NAME="inputbox" VALUE="">
-<INPUT TYPE="button" NAME="button1" Value="Hue"        onClick="huebox(this.form)">
-<INPUT TYPE="button" NAME="button2" Value="Saturation" onClick="satbox(this.form)">
-<INPUT TYPE="button" NAME="button2" Value="Lightness"  onClick="lightbox(this.form)">
+<INPUT TYPE="text"   NAME="inputbox" VALUE="">
+<INPUT TYPE="button" NAME="button1"  Value="Hue" 		onClick="huebox(this.form)">
+<INPUT TYPE="button" NAME="button2"  Value="Saturation" onClick="satbox(this.form)">
+<INPUT TYPE="button" NAME="button3"  Value="Lightness"  onClick="lightbox(this.form)">
 </FORM>
 
-<table style="background-color:#0000ff" id="table1">
+<table style="width:300px;height:300px" id="table1">
 <tr>
 </tr>
 </table>
 
 </body>
+
 <script type="text/javascript">
 
-var currentbg = document.getElementById("table1").style.backgroundColor
-document.getElementById("table1").style.backgroundColor="0000ff"
+var backgroundvariable = "ff0000"
 
+document.getElementById("table1").style.backgroundColor = backgroundvariable;
 
-function huebox (form) { TestVar =form.inputbox.value; currentbg=(hue(currentbg,TestVar)); }
-function satbox (form) { TestVar =form.inputbox.value; currentbg=(saturation(currentbg,TestVar)); }
-function lightbox (form) { TestVar =form.inputbox.value; currentbg=(lightness(currentbg,TestVar)); }
+function huebox (form) 
+{
+	backgroundvariable = hue(backgroundvariable,form.inputbox.value);
+	document.getElementById("table1").style.backgroundColor = backgroundvariable
+}
+
+function satbox (form) 
+{
+	backgroundvariable = saturation(backgroundvariable,form.inputbox.value);
+	document.getElementById("table1").style.backgroundColor = backgroundvariable
+}
+
+function lightbox (form) 
+{
+	console.log(backgroundvariable);
+	backgroundvariable = lightness(backgroundvariable,myform.inputbox.value);
+	console.log(backgroundvariable);
+	document.getElementById("table1").style.backgroundColor = backgroundvariable
+}
 
 
 

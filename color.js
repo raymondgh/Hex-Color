@@ -7,7 +7,7 @@ function hue(hex, x)
 	var g = decify(hex.slice(2,4))
 	var b = decify(hex.slice(4,6))
 
-	for (var i=x; i>0; i--)
+	for (var i=Math.abs(x); i>0; i--)
 	{
 		// no adjustment or gray
 		if (x==0 || r==g && g==b)
@@ -71,6 +71,7 @@ function saturation(hex, x)
 	var bint = (mid-b)/gray
 
 	if (Math.abs(x) > steps) { x = Math.abs(steps);}
+	else {x = x = Math.abs(x);}
 
 	for (var i=x; i>0; i--)
 	{ r = r+rint; g=g+gint; b=b+bint; }
