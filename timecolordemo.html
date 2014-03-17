@@ -5,14 +5,41 @@
 </head>
 
 <body id="time">
-<script src="timecolor.js" type="text/javascript"></script>
+<script src="color.js" type="text/javascript"></script>
 
 <p id=time class="graystyle">At <span id="nowhour"></span>:<span id="nowminute"></span> the current timeslot is <span id="colortime"></span>/511 giving a #<span id="bgcolor"></span> background.</p> 
 
 <p><a href="../index.htm">Author homepage</a></p>
 
+
+
+<FORM NAME="myform" ACTION="" METHOD="GET">
+Enter a number: <BR>
+<INPUT TYPE="text" NAME="inputbox" VALUE="">
+<INPUT TYPE="button" NAME="button1" Value="Hue"        onClick="huebox(this.form)">
+<INPUT TYPE="button" NAME="button2" Value="Saturation" onClick="satbox(this.form)">
+<INPUT TYPE="button" NAME="button2" Value="Lightness"  onClick="lightbox(this.form)">
+</FORM>
+
+<table style="background-color:#0000ff" id="table1">
+<tr>
+</tr>
+</table>
+
 </body>
 <script type="text/javascript">
+
+var currentbg = document.getElementById("table1").style.backgroundColor
+document.getElementById("table1").style.backgroundColor="0000ff"
+
+
+function huebox (form) { TestVar =form.inputbox.value; currentbg=(hue(currentbg,TestVar)); }
+function satbox (form) { TestVar =form.inputbox.value; currentbg=(saturation(currentbg,TestVar)); }
+function lightbox (form) { TestVar =form.inputbox.value; currentbg=(lightness(currentbg,TestVar)); }
+
+
+
+
 var d = new Date();
 var hours=d.getHours();
 var startOfDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
