@@ -83,9 +83,9 @@ function saturation(hex, x)
 
 function lightness(hex, x)
 {
-	var r = decify(hex.slice(0,2)) + x
-	var g = decify(hex.slice(2,4)) + x
-	var b = decify(hex.slice(4,6)) + x
+	var r = parseInt(decify(hex.slice(0,2))) + parseInt(x)
+	var g = parseInt(decify(hex.slice(2,4))) + parseInt(x)
+	var b = parseInt(decify(hex.slice(4,6))) + parseInt(x)
 
 	if (r>255) {r = 255}
 	if (g>255) {g = 255}
