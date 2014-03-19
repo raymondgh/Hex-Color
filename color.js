@@ -1,11 +1,30 @@
+// Number -> String
+// Consumes a decimal 0-255 and produces its hexadecimal equivalent
+
+function hexify(x) {
+    var hexies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+    var firstDigit = Math.floor(x / 16);
+    var secondDigit = Math.floor(x % 16);
+    return hexies.slice(firstDigit, firstDigit + 1) + hexies.slice(secondDigit, secondDigit + 1);
+}
+
+// String -> Number
+// Consumes a 2-digit hexademical and produces its decimal equivalent
+
+function decify(x) {
+    var hexies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+    var firstDigit = hexies.indexOf(x.slice(0, 1));
+    var secondDigit = hexies.indexOf(x.slice(1, 2));
+    return 16 * firstDigit + secondDigit;
+}
+
 // String, Integer -> String
 // Consumes a 6-digit hexadecimal color and a number, produces a hexidecimal color with an adjusted hue
 
-function hue(hex, x) 
-{
-	var r = decify(hex.slice(0,2))
-	var g = decify(hex.slice(2,4))
-	var b = decify(hex.slice(4,6))
+function hue(hex, x) {
+    var r = decify(hex.slice(0, 2));
+    var g = decify(hex.slice(2, 4));
+    var b = decify(hex.slice(4, 6));
 
 	for (var i=Math.abs(x); i>0; i--)
 	{
@@ -98,24 +117,3 @@ function lightness(hex, x)
 	return hexify(r)+hexify(g)+hexify(b);
 }
 
-// Number -> String
-// Consumes a decimal 0-255 and produces its hexadecimal equivalent
-
-function hexify(x)
-{
-	var hexies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
-	var firstDigit = Math.floor(x/16)
-	var secondDigit = Math.floor(x%16)
-	return hexies.slice(firstDigit,firstDigit+1) + hexies.slice(secondDigit,secondDigit+1);
-}
-
-// String -> Number
-// Consumes a 2-digit hexademical and produces its decimal equivalent
-
-function decify(x)
-{
-	var hexies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
-	var firstDigit = hexies.indexOf(x.slice(0,1))
-	var secondDigit = hexies.indexOf(x.slice(1,2))
-	return 16*firstDigit+secondDigit
-}
