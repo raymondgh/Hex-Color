@@ -21,7 +21,8 @@ function decify(x) {
 // String, Integer -> String
 // Consumes a 6-digit hexadecimal color and a number, produces a hexidecimal color with an adjusted hue
 
-function hue(hex, x) {
+function hue(rawHex, x) {
+    let hex = rawHex.toLowerCase()
     var r = decify(hex.slice(0, 2));
     var g = decify(hex.slice(2, 4));
     var b = decify(hex.slice(4, 6));
