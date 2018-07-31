@@ -27,37 +27,43 @@ function hue(rawHex, x) {
     var g = decify(hex.slice(2, 4));
     var b = decify(hex.slice(4, 6));
 
-	for (var i=Math.abs(x); i>0; i--)
-	{
-		// no adjustment or gray
-		if (x==0 || r==g && g==b)
-		{
-			return hex  
-		} 
+    let interval = Math.max(...[r-g, r-b, g-b].map(x => Math.abs(x))) / 255
 
-		// increasing hue
-		if (x>0)  
-		{
-			if      (r>=g && r<b) { r++; } // hue 240-300
-			else if (b<=r && b>g) { b--; } // hue 300-0
-			else if (g>=b && g<r) { g++; } // hue 0-60
-			else if (r<=g && r>b) { r--; } // hue 60-120
-			else if (b>=r && b<g) { b++; } // hue 120-180
-			else if (g<=b && g>r) { g--; } // hue 180-240
-		}
+    console.log(r)
+    console.log(g)
+    console.log(b)
 
-		// decreasing hue
-		 else 
-		{
-			if      (g>=r && g<b) { g++; } 
-			else if (b<=g && b>r) { b--; }
-			else if (r>=b && r<g) { r++; } 
-			else if (g<=r && g>b) { g--; } 
-			else if (b>=g && b<r) { b++; } 
-			else if (r<=b && r>g) { r--; } 
-		}
-	}
-	return hexify(r)+hexify(g)+hexify(b);
+    for (var i=Math.abs(x); i>0; i--)
+    {
+        // no adjustment or gray
+        if (x==0 || r==g && g==b)
+        {
+            return hex  
+        } 
+
+        // increasing hue
+        if (x>0)  
+        {
+            if      (r>=g && r<b) { r += interval; } // hue 240-300
+            else if (b<=r && b>g) { b -= interval; } // hue 300-0
+            else if (g>=b && g<r) { g += interval; } // hue 0-60
+            else if (r<=g && r>b) { r -= interval; } // hue 60-120
+            else if (b>=r && b<g) { b += interval; } // hue 120-180
+            else if (g<=b && g>r) { g -= interval; } // hue 180-240
+        }
+
+        // decreasing hue
+         else 
+        {
+            if      (g>=r && g<b) { g += interval; } 
+            else if (b<=g && b>r) { b -= interval; }
+            else if (r>=b && r<g) { r += interval; } 
+            else if (g<=r && g>b) { g -= interval; } 
+            else if (b>=g && b<r) { b += interval; } 
+            else if (r<=b && r>g) { r -= interval; } 
+        }
+    }
+    return hexify(r)+hexify(g)+hexify(b);
 }
 
 // String, Integer -> String
